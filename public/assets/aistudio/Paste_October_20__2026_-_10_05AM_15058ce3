@@ -1,0 +1,947 @@
+# MASTER BUILD PROMPT — BARBER'S SHOP
+## Premium Barbershop Website + Full-Stack Appointment Booking & Admin Platform
+
+Act as a senior product designer, premium brand designer, full-stack software architect, database engineer, and security-focused QA engineer.
+
+Build a complete, polished, production-oriented website and appointment management platform for my client, **Barber's shop**, using the supplied Google Maps business profile as the reference for the business identity and location.
+
+Google Maps reference:
+https://www.google.com/maps/place/Barber's+shop/@28.5949406,76.9663757,17z/data=!3m1!4b1!4m6!3m5!1s0x390d11005d56b245:0xa03f3885eafc332!8m2!3d28.5949406!4d76.9689506!16s%2Fg%2F11njcnyk0f
+
+This is a real client project. The final result must look like a premium agency-built product, not a generic AI-generated template.
+
+**Critical requirement:** Build a functioning application, not merely a visual mockup. The frontend, backend, database, authentication, booking logic, admin dashboard, and business settings must work together.
+
+Do not stop after generating a homepage or displaying a static dashboard. Implement the complete application.
+
+---
+
+# 1. BUSINESS RESEARCH AND DATA ACCURACY
+
+Before implementing the design:
+
+1. Inspect the supplied Google Maps profile wherever access is available.
+2. Identify the official business name, business category, location, opening hours, available services, prices, phone number, photographs, ratings, review count, review themes, branding, and existing website if one exists.
+3. Use verified business details and genuine business photographs only when they can be reliably identified.
+4. Never confuse another business with this client.
+5. Do not invent customer reviews, star ratings, review counts, addresses, phone numbers, prices, business hours, staff names, or claims about the business.
+6. If any information cannot be verified, create an editable field in the admin dashboard and mark the initial value as requiring confirmation.
+7. Use the supplied Google Maps URL for the location and directions button.
+8. If the client has no existing website, treat this as a new website rather than pretending to redesign an existing site.
+
+Use the business name "Barber's shop" provisionally until its exact official styling is verified.
+
+Create a business configuration system so the owner can update the brand name, logo, contact details, location, services, prices, opening hours, photographs, and business description without editing source code.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use a modern, maintainable full-stack architecture.
+
+Preferred stack:
+- Next.js with App Router and TypeScript.
+- React for interactive UI.
+- Tailwind CSS for styling.
+- A carefully selected premium component system, such as shadcn/ui, where useful.
+- Supabase PostgreSQL as the persistent database.
+- Supabase Auth for customer and administrator authentication.
+- Supabase Storage for business photographs and service images.
+- Server-side actions or secure API routes for protected operations.
+- Zod or an equivalent validation library.
+- React Hook Form or an equivalent robust form solution.
+- A reliable date/time utility library for timezone-safe booking calculations.
+- A suitable testing framework for unit and end-to-end tests.
+
+If the development environment cannot support the preferred stack, select the closest compatible production-ready alternative. Explain the substitution and preserve the same functional requirements.
+
+Do not create a frontend-only application disguised as a full-stack website.
+
+Do not store permanent bookings, users, services, or settings exclusively in localStorage, sessionStorage, mock arrays, or hardcoded JSON.
+
+The application must use a real persistent database. If credentials are unavailable, create the integration layer, database migrations, environment variable template, setup instructions, and a clearly labelled development mode. Never pretend that an unconnected database is operational.
+
+---
+
+# 3. PREMIUM BRAND IDENTITY AND VISUAL DESIGN
+
+Create a sophisticated, contemporary men's grooming brand experience.
+
+Design inspiration:
+- High-end independent barbershops.
+- Luxury editorial magazines.
+- Contemporary men's grooming brands.
+- Premium hospitality websites.
+- Minimal Swiss-inspired layouts combined with cinematic photography.
+
+Suggested design direction, subject to the client's existing identity:
+- Background: warm ivory, soft off-white, or deep charcoal.
+- Primary text: near-black or charcoal.
+- Accent: muted brass, antique bronze, or restrained olive.
+- Surfaces: clean neutral backgrounds with subtle borders.
+- Photography: editorial, atmospheric, high-quality barbering imagery.
+
+Do not overuse gold, gradients, glassmorphism, neon, excessive shadows, oversized rounded cards, or generic AI-generated design patterns.
+
+## Typography
+
+Typography is a major design requirement.
+
+Use a premium typographic pairing:
+- Display headings: "DM Serif Display", "Cormorant Garamond", or another appropriate editorial serif.
+- Body and interface: "Manrope", "DM Sans", or "Inter".
+- Use a consistent type scale, deliberate line-height, refined letter spacing, and strong typographic hierarchy.
+- Use a restrained serif display font for selected hero headings and section titles.
+- Use a clean sans-serif for navigation, service details, forms, buttons, pricing, and dashboards.
+- Load fonts through a reliable, performant method and configure appropriate fallbacks.
+
+Avoid using too many font families. The result should feel intentional, premium, and readable.
+
+## Layout and motion
+
+- Create generous whitespace and an editorial composition.
+- Use a strong grid, precise alignment, and consistent spacing.
+- Use high-quality imagery with deliberate crops and aspect ratios.
+- Add restrained hover transitions, subtle reveals, and smooth interactions.
+- Respect prefers-reduced-motion.
+- Keep animations lightweight and purposeful.
+- Use consistent buttons, inputs, dropdowns, modals, loading states, and empty states.
+- Avoid cluttered navigation and repetitive card layouts.
+- Make the interface feel excellent on mobile, not merely scaled down from desktop.
+
+The overall result should be elegant, confident, modern, and commercially credible.
+
+---
+
+# 4. PUBLIC WEBSITE PAGES
+
+Implement the following pages and sections.
+
+## A. Homepage
+
+Create a premium landing page containing:
+
+1. A polished responsive navigation bar.
+2. Business logo or editable wordmark.
+3. Navigation links for Home, Services, About, Gallery, Reviews, and Contact.
+4. A highly visible "Book an Appointment" CTA.
+5. An editorial hero section with a strong headline, supporting text, primary booking CTA, and secondary location CTA.
+6. A large, high-quality barbershop or barbering photograph.
+7. A selected services section with prices and duration.
+8. A brand/story section highlighting craftsmanship and the customer experience, without inventing unsupported claims.
+9. A gallery of genuine business photographs when available.
+10. A verified Google rating and review section, only when reliable data is available.
+11. Business hours and location information.
+12. A map or directions link.
+13. A clear final booking CTA.
+14. A premium footer with contact details, navigation, privacy policy, terms, and cancellation information.
+
+Keep the homepage focused on converting visitors into confirmed appointments.
+
+## B. Services page
+
+Display all services configured in the database.
+
+Each service should support:
+- Service name.
+- Description.
+- Price in INR by default, editable by the owner.
+- Duration in minutes.
+- Optional preparation or buffer time.
+- Service image.
+- Active/inactive status.
+- Display order.
+- Optional category.
+- Optional featured status.
+
+Provide attractive service listings and a direct booking CTA for each service.
+
+Only publish services and prices that the owner has confirmed. Use clearly labelled setup data until then.
+
+## C. Gallery page
+
+- Responsive image grid.
+- Large image viewing experience.
+- Optional category filtering.
+- Optimized image loading.
+- Accessible controls.
+- Admin-managed uploads and image ordering.
+
+Never present generated stock images as actual photographs of the client's shop, staff, or customers.
+
+## D. About page
+
+Create an editorial brand story page with editable content, photographs, and optional staff profiles.
+
+Do not fabricate the owner's biography, staff qualifications, years of experience, awards, or business history.
+
+## E. Contact and location page
+
+Include:
+- Verified business address, if available.
+- Configurable phone number.
+- Configurable email address.
+- Business hours.
+- Google Maps directions.
+- Click-to-call functionality on mobile.
+- An optional validated contact form with spam protection.
+
+Use the supplied Google Maps link for directions. Do not embed or expose secret map API keys.
+
+## F. Customer account pages
+
+Implement:
+- Sign-up.
+- Login.
+- Email verification where supported.
+- Password reset.
+- Customer profile.
+- Upcoming appointments.
+- Past appointments.
+- Booking details.
+- Appointment cancellation, subject to the configured cancellation policy.
+- Logout.
+
+Provide a simple guest-booking option if appropriate, while ensuring bookings can be securely retrieved and managed.
+
+---
+
+# 5. COMPLETE APPOINTMENT BOOKING ENGINE
+
+This is one of the most important features. Implement real booking logic.
+
+Create a polished, multi-step booking flow.
+
+## Step 1: Select a service
+
+Display active services, their prices, and durations.
+
+Allow the customer to choose one service. Support multiple services only if the booking duration and scheduling logic correctly handle the combined selection.
+
+## Step 2: Select a barber or staff member
+
+Make staff selection configurable.
+
+If the shop has multiple barbers, show their profiles and actual availability.
+
+If there is only one barber or the staff details have not been confirmed, provide an appropriate default option without inventing a real staff member.
+
+The system should support an optional "Any available barber" choice when multiple staff members are configured.
+
+## Step 3: Choose a date
+
+Provide a responsive calendar.
+
+- Disable past dates.
+- Disable closed days.
+- Disable dates blocked by the administrator.
+- Respect advance-booking limits.
+- Respect minimum booking notice.
+- Respect business timezone.
+- Prevent booking on dates when the selected barber is unavailable.
+- Indicate available and unavailable dates clearly.
+
+## Step 4: Choose an available time slot
+
+Generate appointment slots dynamically from:
+- Business opening hours.
+- Staff working hours.
+- Service duration.
+- Optional buffer time.
+- Existing confirmed or pending reservations.
+- Staff-specific appointments.
+- Breaks and lunch intervals.
+- Blocked time ranges.
+- Blocked dates and holidays.
+- Minimum notice.
+- Maximum booking horizon.
+
+Never display slots that are already booked or outside the configured schedule.
+
+Use a configurable slot interval, such as 15 minutes, without assuming that every appointment must last 15 minutes.
+
+Store appointment timestamps consistently, preferably in UTC, and convert them to the business's configured IANA timezone for display and scheduling.
+
+Use the actual business timezone once verified. Do not hardcode the development machine's timezone.
+
+## Step 5: Customer information
+
+Collect:
+- Full name.
+- Phone number.
+- Email address when required.
+- Optional customer notes.
+- Selected service.
+- Selected barber.
+- Appointment date.
+- Appointment time.
+- Final price and estimated duration.
+
+Validate all inputs on both the client and server.
+
+## Step 6: Review and confirm
+
+Show a clear appointment summary with:
+- Business name.
+- Selected service.
+- Barber, if applicable.
+- Date and local time.
+- Duration.
+- Price.
+- Customer information.
+- Relevant cancellation policy.
+
+Require explicit confirmation before creating the appointment.
+
+## Step 7: Confirmation
+
+After a successful booking:
+- Display a booking confirmation page.
+- Generate a unique, non-guessable booking reference.
+- Save the appointment to the database.
+- Show the confirmed date, time, service, and price.
+- Provide links to view or manage the booking.
+- Provide an option to add the appointment to a calendar.
+- Send a confirmation email if email delivery has been configured.
+- Show a clear success state and an actionable error state when something fails.
+
+Never show a successful confirmation before the server has confirmed that the booking was saved.
+
+---
+
+# 6. BOOKING CONCURRENCY AND DATA INTEGRITY
+
+Prevent double bookings.
+
+A simple frontend check is not sufficient.
+
+Implement server-side availability validation and transactional booking creation.
+
+When two customers attempt to reserve the same barber and time simultaneously:
+- Only one conflicting appointment may be confirmed.
+- The other customer must receive a clear message and choose another available slot.
+
+Use appropriate PostgreSQL constraints, transactions, locking, exclusion constraints, or another reliable concurrency-control strategy.
+
+Handle overlapping appointments correctly, including appointments with different durations.
+
+Use a safe booking lifecycle:
+- Pending, if a genuine temporary hold mechanism is implemented.
+- Confirmed.
+- Cancelled.
+- Completed.
+- No-show.
+
+Do not leave appointments pending indefinitely.
+
+If temporary holds are implemented, enforce their expiration in the backend. Never rely solely on browser timers.
+
+Define which statuses consume availability. Cancelled appointments must release their slots.
+
+A customer must not be able to alter another customer's appointment by changing a booking ID in the browser.
+
+Recalculate service duration, pricing, staff availability, and business rules on the server rather than trusting client-submitted values.
+
+---
+
+# 7. ADMIN AUTHENTICATION AND ROLE-BASED ACCESS
+
+Create a secure administrator area at a route such as /admin.
+
+Do not expose an open administrator registration page.
+
+Create the first administrator through a documented, secure setup or invitation process.
+
+Use Supabase Auth or the chosen authentication provider for real authentication.
+
+Implement role-based access control with at least:
+- Customer.
+- Administrator.
+
+If staff accounts are implemented, give them limited permissions appropriate to their responsibilities.
+
+Protect every privileged route and server operation. Hiding admin navigation in the UI is not sufficient.
+
+Use server-side authorization and database-level policies.
+
+A normal customer must never be able to:
+- Read all customer records.
+- Access the admin dashboard.
+- Change service prices.
+- Change business hours.
+- View other customers' private information.
+- Create an administrator account.
+- Modify another customer's appointment.
+
+Do not store passwords in plain text.
+
+Never expose service-role keys, database credentials, email-provider secrets, or private environment variables to browser code.
+
+---
+
+# 8. ADMIN DASHBOARD
+
+Build a professional admin dashboard that matches the quality of the public website.
+
+## A. Overview
+
+Show real database-derived metrics:
+- Today's appointments.
+- Upcoming appointments.
+- Completed appointments.
+- Cancelled appointments.
+- Total customers.
+- Revenue from completed appointments.
+- Appointment trends over a selected period.
+
+Include a daily schedule and recent booking activity.
+
+Clearly distinguish actual revenue from estimated booking value. Do not invent metrics or display hardcoded chart data.
+
+Provide helpful empty states for a new business.
+
+## B. Appointment management
+
+Allow authorized administrators to:
+- View appointments in a list and calendar.
+- Filter by date, service, barber, and status.
+- Search by booking reference or customer details where authorized.
+- Open appointment details.
+- Confirm or cancel appointments.
+- Reschedule appointments.
+- Mark appointments completed or no-show.
+- Add an appointment manually.
+- View relevant customer notes.
+- Inspect appointment history.
+
+When rescheduling, check availability again and prevent conflicts.
+
+Track important status changes and timestamps.
+
+## C. Service management
+
+Provide full CRUD functionality:
+- Create services.
+- Edit service details.
+- Set prices.
+- Set durations.
+- Configure buffer times.
+- Upload service images.
+- Change service categories.
+- Activate or deactivate services.
+- Reorder services.
+
+Validate all prices and durations on the server.
+
+Do not delete historical appointment information when a service is deactivated.
+
+## D. Business hours management
+
+Allow the owner to configure each day of the week individually.
+
+Each day should support:
+- Open or closed.
+- Opening time.
+- Closing time.
+- Multiple working intervals when necessary.
+- Breaks.
+- Optional special schedules.
+
+Validate time intervals and prevent invalid or overlapping working periods.
+
+## E. Blocked dates and time slots
+
+Allow the administrator to:
+- Block a full date.
+- Block a specific time range.
+- Set a reason.
+- Apply a block to the whole business or a specific staff member.
+- Add holidays.
+- Remove a future block.
+
+Existing appointments affected by a new block must be clearly identified. Do not silently delete or automatically cancel confirmed bookings.
+
+## F. Staff management
+
+Support:
+- Staff profiles.
+- Names and display photographs.
+- Active/inactive status.
+- Staff-specific working hours.
+- Assigned services.
+- Breaks and leave.
+- Individual schedules.
+- Staff-specific booking availability.
+
+Only display real staff details once entered or verified by the owner.
+
+## G. Customer management
+
+Allow authorized administrators to:
+- Search customers.
+- View their relevant booking history.
+- View contact information required for business operations.
+- Add internal notes where appropriate.
+- Identify repeat customers.
+- Correct customer details through authorized workflows.
+
+Protect personal data and restrict unnecessary access.
+
+## H. Business settings
+
+Create editable settings for:
+- Business name.
+- Logo.
+- Brand assets.
+- Description.
+- Address.
+- Google Maps URL.
+- Phone number.
+- Contact email.
+- Business timezone.
+- Currency.
+- Opening hours.
+- Booking interval.
+- Minimum notice period.
+- Maximum booking horizon.
+- Cancellation rules.
+- Rescheduling rules.
+- Notification preferences.
+- Social media URLs.
+- Gallery images.
+- SEO metadata.
+
+Make the public website read these settings from the database wherever appropriate.
+
+## I. Admin profile and security
+
+Provide:
+- Secure logout.
+- Profile management.
+- Password reset.
+- Role checks.
+- A protected settings area.
+- Clear unauthorized and session-expired states.
+
+Use pagination for large datasets and avoid fetching every record unnecessarily.
+
+---
+
+# 9. DATABASE DESIGN
+
+Create a properly normalized PostgreSQL schema with migrations and relationships.
+
+Include appropriate tables, such as:
+
+1. profiles
+   - id
+   - full_name
+   - phone
+   - role
+   - created_at
+   - updated_at
+
+2. business_settings
+   - id
+   - business_name
+   - description
+   - address
+   - maps_url
+   - phone
+   - email
+   - timezone
+   - currency
+   - logo_url
+   - booking_settings
+   - cancellation_settings
+   - updated_at
+
+3. services
+   - id
+   - name
+   - slug
+   - description
+   - price
+   - duration_minutes
+   - buffer_minutes
+   - category
+   - image_url
+   - is_active
+   - display_order
+   - created_at
+   - updated_at
+
+4. staff
+   - id
+   - profile or staff identity fields
+   - display_name
+   - image_url
+   - is_active
+   - created_at
+   - updated_at
+
+5. staff_services
+   - staff_id
+   - service_id
+
+6. business_hours
+   - id
+   - weekday
+   - is_closed
+   - opening_intervals
+
+7. staff_working_hours
+   - id
+   - staff_id
+   - weekday
+   - working_intervals
+
+8. blocked_periods
+   - id
+   - staff_id, nullable for business-wide blocks
+   - start_at
+   - end_at
+   - reason
+   - created_by
+   - created_at
+
+9. appointments
+   - id
+   - public_booking_reference
+   - customer_id, nullable if guest bookings are supported
+   - service_id
+   - staff_id
+   - customer_name
+   - customer_email
+   - customer_phone
+   - start_at
+   - end_at
+   - price_snapshot
+   - service_name_snapshot
+   - duration_snapshot
+   - status
+   - customer_notes
+   - cancellation_reason
+   - created_at
+   - updated_at
+
+10. gallery_images
+    - id
+    - image_url
+    - alt_text
+    - category
+    - display_order
+    - is_published
+
+11. notifications or notification_logs, if notifications are implemented.
+
+12. audit_logs for important administrator actions, where appropriate.
+
+Adjust the schema as needed for a correct implementation. Include foreign keys, indexes, unique constraints, validation constraints, and suitable deletion behavior.
+
+Use numeric decimal values for money, not floating-point arithmetic.
+
+Store a snapshot of the agreed price and service details on each appointment so future price changes do not alter historical bookings.
+
+Use the authentication provider's user ID as the identity for registered customers.
+
+Implement Row Level Security policies for every sensitive table.
+
+Do not rely on frontend filters as a security boundary.
+
+Create SQL migration files, seed scripts, and a README explaining database setup.
+
+---
+
+# 10. EMAILS AND NOTIFICATIONS
+
+Build a notification layer that can be connected to a transactional email provider.
+
+When configured, support:
+- Booking confirmation.
+- Booking cancellation.
+- Rescheduling confirmation.
+- Appointment reminder.
+- Administrator notification for new bookings.
+
+Use professional, branded email templates.
+
+Make reminder timing configurable.
+
+Do not claim that emails or SMS messages have been sent when delivery is not configured or the provider reports failure.
+
+Keep booking persistence independent of email delivery so a temporary email outage does not accidentally duplicate a booking.
+
+SMS or WhatsApp notifications may be integrated through a suitable provider if credentials and permissions are available. Do not simulate actual message delivery.
+
+---
+
+# 11. UI/UX AND RESPONSIVENESS
+
+Ensure the entire application is responsive.
+
+## Mobile
+- Compact navigation.
+- Touch-friendly controls.
+- Easy date and time selection.
+- No horizontal overflow.
+- Clear service prices.
+- Accessible forms.
+- A prominent booking CTA.
+- Comfortable spacing and readable text.
+- Proper mobile calendar behavior.
+
+## Tablet
+- Balanced layouts.
+- Adaptive navigation.
+- Efficient admin scheduling views.
+
+## Desktop
+- Editorial hero composition.
+- Premium image layouts.
+- Refined service grids.
+- Spacious content areas.
+- A well-structured admin sidebar and dashboard.
+
+Every interaction must work:
+- Navigation links.
+- Booking buttons.
+- Date selection.
+- Time-slot selection.
+- Form validation.
+- Modals.
+- Dropdowns.
+- Authentication.
+- Admin filters.
+- CRUD actions.
+- Pagination.
+- Gallery controls.
+- Cancellation and rescheduling.
+
+Provide loading indicators, success messages, error messages, disabled states, and empty states.
+
+Do not leave dead buttons, placeholder links, fake interactions, or unfinished screens.
+
+---
+
+# 12. ACCESSIBILITY, PERFORMANCE, AND SEO
+
+Implement:
+- Semantic HTML.
+- Keyboard-accessible navigation.
+- Visible focus indicators.
+- Appropriate accessible labels.
+- Correct heading hierarchy.
+- Accessible contrast.
+- Alt text for meaningful images.
+- Reduced-motion support.
+- Proper form error announcements.
+
+Performance:
+- Optimize image sizes.
+- Use responsive images and lazy loading where appropriate.
+- Avoid unnecessary JavaScript.
+- Minimize layout shifts.
+- Use server rendering or static rendering where suitable.
+- Cache public content carefully without caching private booking information.
+
+SEO:
+- Unique page titles and meta descriptions.
+- Canonical URLs where appropriate.
+- Open Graph metadata.
+- Sitemap.
+- robots.txt.
+- Structured data for a barbershop or appropriate local business type.
+- Service metadata where useful.
+- Accurate business details only.
+- Local SEO content based on the verified location.
+
+Do not publish fabricated review structured data, ratings, business hours, addresses, or prices.
+
+Do not claim a specific performance score without measuring it.
+
+---
+
+# 13. SECURITY AND PRIVACY
+
+Implement production-conscious security practices:
+- Server-side input validation.
+- Authentication and authorization checks.
+- Database-level access policies.
+- Protection against unauthorized record access.
+- Rate limiting for authentication and booking endpoints where appropriate.
+- Spam protection for public forms.
+- Secure handling of environment variables.
+- Safe error messages that do not expose internal stack traces or secrets.
+- Protection against common injection and cross-site scripting risks.
+- Appropriate CSRF protection where relevant to the authentication architecture.
+- Secure session handling.
+- Minimal collection of personal information.
+- Appropriate privacy and retention policies.
+- Safe image upload validation and file size restrictions.
+
+Never include real secrets in source control.
+
+Provide an .env.example file with variable names and descriptions, using placeholder values only.
+
+Use a transactional and concurrency-safe booking operation.
+
+---
+
+# 14. SEED DATA AND FIRST-RUN EXPERIENCE
+
+The project must be easy to initialize.
+
+Create a setup experience that:
+- Checks whether required configuration is present.
+- Guides the owner through business details.
+- Allows service creation.
+- Allows opening hours to be configured.
+- Allows staff to be added.
+- Allows an administrator to be provisioned securely.
+- Explains how to connect the database and storage.
+
+Use clearly labelled sample services only when needed for development.
+
+Example sample services may include:
+- Classic Haircut.
+- Fade Haircut.
+- Beard Trim.
+- Haircut and Beard.
+- Head Shave.
+
+These are suggestions for editable setup data, not verified claims about the client's current menu.
+
+Clearly identify sample prices as unconfirmed placeholders. Do not publish invented prices on the live website.
+
+Never seed fabricated reviews or real customer information.
+
+---
+
+# 15. PROJECT STRUCTURE AND DELIVERABLES
+
+Generate a complete, maintainable codebase.
+
+Include:
+- Public website.
+- Admin dashboard.
+- Customer authentication.
+- Database schema and migrations.
+- Database security policies.
+- Service and staff management.
+- Appointment scheduling engine.
+- Availability validation.
+- Transaction-safe booking creation.
+- Blocked dates and time ranges.
+- Business hours management.
+- Customer account and booking history.
+- Image upload integration.
+- Notification integration layer.
+- Responsive UI.
+- Form validation.
+- Error and loading states.
+- SEO configuration.
+- Environment variable template.
+- README with setup instructions.
+- Seed script.
+- Tests.
+- Deployment instructions.
+
+Use reusable components and keep business logic separate from presentation components.
+
+Use meaningful file names, clear types, and consistent coding conventions.
+
+Avoid giant components, duplicated scheduling logic, and unnecessary dependencies.
+
+---
+
+# 16. TESTING AND ACCEPTANCE CRITERIA
+
+Before declaring the project complete, run the available checks and fix the failures.
+
+Test at minimum:
+
+1. A visitor can browse services.
+2. A customer can register and sign in.
+3. A customer can request available booking dates.
+4. Available time slots respect business hours.
+5. Closed days and blocked dates cannot be booked.
+6. Existing appointments prevent conflicting bookings.
+7. Two simultaneous booking requests cannot create overlapping confirmed appointments for the same staff member.
+8. Booking creation persists in the database.
+9. A confirmed booking appears in the admin dashboard.
+10. An administrator can create, edit, activate, and deactivate services.
+11. An administrator can update business hours.
+12. An administrator can block a date and a time range.
+13. An administrator can cancel and reschedule appointments.
+14. Customers cannot access another customer's private bookings.
+15. Customers cannot access administrator operations.
+16. Cancelled appointments release their time slots.
+17. Historical appointment prices remain unchanged after service price updates.
+18. Invalid input produces clear errors.
+19. Failed booking requests do not display false success messages.
+20. The application works on mobile, tablet, and desktop.
+21. Environment variables and database setup are documented.
+22. The production build completes successfully.
+
+Write unit tests for slot generation and overlap detection, integration tests for booking creation and authorization, and end-to-end tests for the most important booking journey wherever the environment permits.
+
+If a test cannot run because credentials or external services are missing, document that limitation instead of claiming the test passed.
+
+---
+
+# 17. FINAL DESIGN QUALITY BAR
+
+The finished product must look like a bespoke, premium website built for a real grooming business.
+
+Prioritize:
+- A distinctive visual identity.
+- Exceptional typography.
+- High-quality imagery.
+- Excellent spacing.
+- Clear conversion paths.
+- Real appointment availability.
+- Reliable database persistence.
+- Secure administrator access.
+- Accurate business information.
+- Fast loading and responsive behavior.
+- Maintainable architecture.
+
+Do not produce a generic dashboard template with a barbershop logo placed on top.
+
+Do not use fake booking counts, fake customers, fake reviews, or fake revenue in the live application.
+
+Do not stop after producing a design concept, wireframe, or homepage.
+
+# EXECUTION INSTRUCTIONS
+
+Work in this order:
+
+Phase 1: Inspect the existing project and available business information. Identify the development environment and any existing files that must be preserved.
+
+Phase 2: Establish the architecture, design system, database schema, and environment configuration.
+
+Phase 3: Build the complete public-facing website.
+
+Phase 4: Implement authentication, database integration, business settings, and role-based authorization.
+
+Phase 5: Build the scheduling engine, availability calculation, conflict prevention, and appointment lifecycle.
+
+Phase 6: Build the complete admin dashboard and management features.
+
+Phase 7: Add customer account features, notifications, SEO, accessibility, and responsive refinements.
+
+Phase 8: Run tests, fix bugs, verify the production build, and document deployment.
+
+After implementation, provide:
+- A summary of completed features.
+- The project folder structure.
+- Database setup and migration instructions.
+- Required environment variables.
+- Secure administrator creation instructions.
+- Local development commands.
+- Production deployment steps.
+- Any external integrations that still require credentials.
+- Any business details the owner must confirm.
+
+**Start by inspecting the current development environment and available project files. Then implement the application end to end. Make reasonable engineering decisions without repeatedly asking for approval. Do not claim any feature is complete unless its implementation and available tests support that claim.**

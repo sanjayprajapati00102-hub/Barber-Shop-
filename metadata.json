@@ -1,0 +1,6 @@
+{
+  "name": "Barber's Shop — Bespoke Men's Grooming & Booking",
+  "description": "Official website and live appointment booking platform for Barber's Shop in Khaira, Najafgarh, New Delhi. Book precision haircuts, beard sculpting, and luxury grooming.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
